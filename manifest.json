@@ -1,0 +1,43 @@
+{
+	"name" : "__MSG_name__",
+	"description" : "__MSG_description__",
+	"version" : "1.0",
+	"manifest_version" : 2,
+	"default_locale" : "zh_CN",
+	"icons" : {
+		"16" : "icon.png",
+		"48" : "icon.png",
+		"128" : "icon.png"
+	},
+	"page_action" : {
+		"default_icon" : "icon.png",
+		"default_title" : "生成二维码",
+		"default_popup" : "chrome/popup.html"
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["vendor/jquery.min.js"]
+		}
+	],
+	"background" : {
+		"page": "chrome/background.html"
+	},
+	"permissions" : [
+		"tabs", "declarativeContent", "<all_urls>", "http://*/*", "notifications"
+	],
+	"commands": {
+		"toggle-qr-code": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+0",
+				"windows": "Ctrl+Shift+0",
+				"mac": "Ctrl+Shift+0"
+			},
+			"description": "Toggle Qrcode",
+			"global": true
+		}
+	},
+	"web_accessible_resources" : [
+		"icon.png"
+	]
+}
