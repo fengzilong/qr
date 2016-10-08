@@ -1,6 +1,7 @@
-# qr
-chrome extension to generate qr code for current page
+# qrCode
 
-open with pageAction popup or press Ctrl+Shift+0
+> chrome extension for generating qrCode for current page
 
-you can modify the shortcut in chrome://extensions/
+## License
+
+MIT &copy; [fengzilong](https://github.com/fengzilong)
