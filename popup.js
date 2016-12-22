@@ -27,12 +27,10 @@
 
 	function replaceWithLocalIP( data ) {
 		const url = data[ 0 ];
-		const ip = data[ 1 ][ 0 ];
-		if ( ip ) {
+		const ips = data[ 1 ];
+		return ips.map( function( ip ) {
 			return url.replace( /^(https*:\/\/)(127\.0\.0\.1|localhost)/, `$1${ ip }` );
-		} else {
-			return url;
-		}
+		} );
 	}
 
 	// See: http://stackoverflow.com/a/29514292
@@ -65,13 +63,28 @@
 		} );
 	}
 
-	function genQrCode( url ) {
-		$( '#qr' ).qrcode( {
-			width: 260,
-			height: 260,
-			text: url
-		} );
-		$( '#qr' ).attr( 'title', url );
+	function genQrCode( urls ) {
+		var i = 0;
+
+		$( '#qr' )
+			.qrcode( {
+				width: 260,
+				height: 260,
+				text: urls[ i ]
+			} )
+			.attr( 'title', urls[ i ] )
+			.on( 'click', function() {
+				i = ( i + 1 ) % urls.length;
+
+				$( this )
+					.html( '' )
+					.qrcode( {
+						width: 260,
+						height: 260,
+						text: urls[ i ],
+					} )
+					.attr( 'title', urls[ i ] )
+			} )
 	}
 
 	function noop() {}
